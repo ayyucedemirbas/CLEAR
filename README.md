@@ -1,3 +1,3 @@
-# CLEAR : **C**ontextualizing **L**LM Embeddings via **A**ttention-based g**R**aph **L**earning
+# CLEAR : Contextualizing LLM Embeddings via Attention-based gRaph Learning
 ![Model Overview](Figure_1.png)
 
