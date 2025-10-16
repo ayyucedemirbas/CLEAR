@@ -1,3 +1,3 @@
-# From General-Purpose to Disease-Specific Features: Aligning LLM Embeddings on a Disease-Specific Biomedical Knowledge Graph for Drug Repurposing.
+# CLEAR : **C**ontextualizing **L**LM Embeddings via **A**ttention-based g**R**aph **L**earning
 ![Model Overview](Figure_1.png)
 
