@@ -1,4 +1,5 @@
-# CLEAR: Contextualizing LLM Embeddings via Attention-based Graph Learning for ADRD Drug Repurposing
+# CLEAR : Contextualizing LLM Embeddings via Attention-based gRaph Learning for ADRD Drug Repurposing
+![Model Overview](Figure_1.png)
 
 CLEAR is a heterogeneous Graph Neural Network (GNN) framework for **drug repurposing and candidate drug ranking** in neurodegenerative diseases.
 The framework integrates biological knowledge graphs with large language model (LLM)-derived biological representations to discover and prioritize new therapeutic drug candidates.
@@ -276,8 +277,4 @@ python candidate_drug_ranking.py
 ## License
 
 MIT License
-
-
-# CLEAR : Contextualizing LLM Embeddings via Attention-based gRaph Learning
-![Model Overview](Figure_1.png)
 
