@@ -5,7 +5,7 @@ from utils import *
 from model import *
 
 
-Dataset_name = "ADRD_dataset"
+Dataset_name = "ADRD_dataset" #The toy dataset folder is named 'ADRD_dataset', not 'ADRD'
 
 print("Loading node IDs...")
 with open(f'{Dataset_name}/input_network/node_ids/drugs.pkl', 'rb') as f:
@@ -158,8 +158,8 @@ print(f"Using device: {device}")
 
 model = ADRD_LinkPredictor(
     in_dims        = {'drug': 768, 'disease': 768, 'protein': 1280},
-    hidden_dim     = 512,          # was 1024
-    gat_heads      = 4,            # was 8
+    hidden_dim     = 512,          # was 1024, must be the same as in the candidate_drug_ranking.py
+    gat_heads      = 4,            # was 8, TODO:Try to increase this
     fusion_heads   = 4,            # was 8
     beta           = 0.75,
     dropout        = 0.35,
