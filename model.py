@@ -13,9 +13,9 @@ import time
 class ADRD_LinkPredictor(nn.Module):
     def __init__(self,
                  in_dims,
-                 hidden_dim,       # T4-safe default: 512  (was 1024)
-                 gat_heads,        # T4-safe default: 4    (was 8)
-                 fusion_heads,     # T4-safe default: 4    (was 8)
+                 hidden_dim,       # default = 512  (was 1024)
+                 gat_heads,        # default = 4    (was 8) TODO: Try to increase this
+                 fusion_heads,     # default = 4    (was 8)
                  dropout,
                  beta,
                  use_checkpoint: bool = True):
@@ -149,15 +149,12 @@ class ADRD_LinkPredictor(nn.Module):
                 if torch.cuda.is_available():
                     torch.cuda.empty_cache()
 
-        # Fuse each node-type's 3 embeddings -> 1
-        # FIX: pop each type's embedding list before stacking, then delete it
-        # immediately after torch.stack().  This means only ONE type's source
-        # tensors + stacked tensor are alive at a time instead of all 9.
+#I changed it
         H_fused_dict = {}
         for ntype in list(embs.keys()):
-            lst = embs.pop(ntype)               # remove from dict  ← FIX
+            lst = embs.pop(ntype)
             stacked = torch.stack(lst, dim=0)   # [3, N_ntype, H]
-            del lst                             # free 3 source tensors ← FIX
+            del lst
             fused, _ = self.fusion_attn(stacked, stacked, stacked)
             # .contiguous() ensures the output owns its storage (no alias chains)
             H_fused_dict[ntype] = fused.mean(dim=0).contiguous()
