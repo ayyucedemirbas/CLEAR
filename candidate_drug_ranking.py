@@ -50,7 +50,7 @@ protein_global_end   = total_nodes
 model = ADRD_LinkPredictor(
     in_dims      = {'drug': 768, 'disease': 768, 'protein': 1280},
     hidden_dim   = 512,    # must match the value used during training
-    gat_heads    = 4,
+    gat_heads    = 4,  # TODO: Try to increase this
     fusion_heads = 4,
     beta         = 0.75,
     dropout      = 0.35,
@@ -113,7 +113,7 @@ del dd_pairs, dd_scores
 if torch.cuda.is_available():
     torch.cuda.empty_cache()
 
-# Disease–Protein
+# Disease - Protein
 print(f"\nStreaming Disease–Protein pairs "
       f"({num_disease} × {num_protein} = {num_disease*num_protein:,})...")
 dp_pairs, dp_scores = predict_and_filter_streaming(
@@ -229,7 +229,7 @@ res1_df = build_overlap_df(top_scores)
 res1_df["is_known"] = res1_df["Drug"].apply(lambda d: (d, disease_of_interest) in known_edges)
 res1_df["is_novel"] = ~res1_df["is_known"]
 
-print(f"\nRun 1: Top {top_n} drugs by score for '{disease_of_interest}'\n")
+print(f"Run 1: Top {top_n} drugs by score for '{disease_of_interest}'\n")
 try:
     display(res1_df)
 except NameError:
